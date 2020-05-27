@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -23,8 +25,27 @@ class MagicBall extends StatefulWidget {
 }
 
 class _MagicBallState extends State<MagicBall> {
+  var ballAnswerNumber = 1;
+
+  void generateBallAnswer() {
+    setState(() {
+      ballAnswerNumber = Random().nextInt(5) + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Center(
+      child: Container(
+        child: FlatButton(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          child: Image.asset('assets/images/ball$ballAnswerNumber.png'),
+          onPressed: () {
+            generateBallAnswer();
+          },
+        ),
+      ),
+    );
   }
 }
